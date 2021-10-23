@@ -1,0 +1,124 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it -->
+    <record id="calorie_product_temp" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+
+        <field name="arch" type="xml">
+        <field name="categ_id" position="after">
+          <field name="calorie"/>
+            <field name="serve_size"/>
+            <field name="last_update"/>
+            <field name="is_diet"/>
+        </field>
+        </field>
+    </record>
+<!--    id product_template_tree_view-->
+    <record id="calorie_product_temp_tree_view" model="ir.ui.view">
+
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+
+        <field name="categ_id" position="after">
+          <field name="calorie" sum="Total calories"/>
+            <field name="serve_size"/>
+            <field name="last_update"/>
+            <field name="is_diet"/>
+        </field>
+
+        </field>
+    </record>
+          <record id="diet_action" model="ir.actions.act_window">
+            <field name="name">diet items</field>
+            <field name="res_model">product.template</field>
+            <field name="search_view_id" ref="product.product_template_tree_view"/>
+            <field name="view_mode" >kanban,tree,form</field>
+            <field name="context">{'search_default_filter_cal': 1,'default_type':1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No product found. Let's create one!
+              </p><p>
+                Define the components and finished products you wish to use in
+                bill of materials and manufacturing orders.
+              </p>
+            </field>
+        </record>
+      <!-- This Menu Item must have a parent and an action -->
+<!--      <menuitem id="diet_items" name="new"  action="diet_action" sequence="10"/>-->
+<!--      <menuitem id="idi2" name="diet2"  action="diet_action" sequence="10" parent="diet_items"/>-->
+
+<!--    </record>-->
+
+<!--            <record id="product.calorie_product_temp" model="ir.actions.act_window">-->
+<!--            <field name="name">Diet Products</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">product.template</field>-->
+<!--            <field name="view_mode">kanban,tree,form,activity</field>-->
+<!--            <field name="context">{"search_default_filter_to_sell":1}</field>-->
+<!--            <field name="view_id" ref="product.product_template_tree_view"/>-->
+<!--        </record>-->
+
+    <!-- This Menu Item must have a parent and an action -->
+<!--    <menuitem id="diet_action" name="" parent="base.menu_sale" action="product.calorie_product_temp" sequence="1"/>-->
+
+
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="hassan.list">
+      <field name="name">hassan list</field>
+      <field name="model">hassan.hassan</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="hassan.action_window">
+      <field name="name">hassan window</field>
+      <field name="res_model">hassan.hassan</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="hassan.action_server">
+      <field name="name">hassan server</field>
+      <field name="model_id" ref="model_hassan_hassan"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+<!--    <menuitem name="hassanxxx" id="hassan.menu_root"/>-->
+
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="hassan.menu_1" parent="hassan.menu_root"/>
+    <menuitem name="Menu 2" id="hassan.menu_2" parent="hassan.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="hassan.menu_1_list" parent="hassan.menu_1"
+              action="hassan.action_window"/>
+    <menuitem name="Server to list" id="hassan" parent="hassan.menu_2"
+              action="hassan.action_server"/>
+-->
+  </data>
+</odoo>

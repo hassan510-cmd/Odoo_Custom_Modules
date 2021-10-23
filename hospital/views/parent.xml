@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="patient_parent_form_view" model="ir.ui.view">
+            <field name="name">hospital.parent.form</field>
+            <field name="model">hospital.parent</field>
+            <field name="arch" type="xml">
+                <form string="hospital_parent_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="parent_name" string="Name" placeholder="Enter parent number"/>
+                                <field name="mobile" string="mobile" placeholder="Enter mobile number"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="patient_parent_action2" model="ir.actions.act_window">
+            <field name="name">parents</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.parent</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    add new parent
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="hospital_patient_root2" name="Parents" parent="hospital_root"
+                  sequence="2"/>
+        <menuitem id="hospital_patient2" name="add parent" parent="hospital_patient_root2"
+                  action="patient_parent_action2"
+                  sequence="2"/>
+
+        <record id="patient_parent_tree_view" model="ir.ui.view">
+            <field name="name">hospital.parent.tree</field>
+            <field name="model">hospital.parent</field>
+            <field name="arch" type="xml">
+                <tree string="hospital.parent">
+                    <field name="parent_name" string="Name"/>
+                    <field name="mobile" string="mobile" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="patient_parent_search_view" model="ir.ui.view">
+            <field name="name">patient_parent.search</field>
+            <field name="model">hospital.parent</field>
+            <field name="arch" type="xml">
+                <search string="parents">
+                    <field name="parent_name"/>
+                    <field name="mobile"/>
+                    <group expand="1" string="Group By">
+                        <filter string="mobile" name="mobile"
+                                context="{'group_by':'mobile'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

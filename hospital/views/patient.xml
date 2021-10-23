@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ___________________________________________ -->
+        <!--        kanban view       -->
+        <record id="view_patient_kanban" model="ir.ui.view">
+            <field name="name">hospital.patient.kanban</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="patient_name"/>
+                    <field name="patient_age"/>
+                    <field name="gender"/>
+                    <field name="notes"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="card text-center shadow-sm mb-5 bg-body rounded-3 d-flex"
+                                 style="width:300px; border-radius: 20px;">
+                                <div class="card-header">
+                                    ID:
+                                    <field name="id"/>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">NAME:
+                                        <field name="patient_name"/>
+                                    </h5>
+                                    <p class="card-text">AGE:
+                                        <field name="patient_age"/>
+                                    </p>
+                                    <a href="#" class="btn btn-warning">GENDER:
+                                        <field name="gender"/>
+                                    </a>
+                                </div>
+                                <div class="card-footer text-muted border-warning ">
+                                    notes:
+                                    <field name="notes"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- ___________________________________________ -->
+        <!--        tree view       -->
+        <record id="view_patient_tree" model="ir.ui.view">
+            <field name="name">hospital.patient.tree</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <tree string="patient_tree">
+                    <field name="patient_seq" string="ID"/>
+                    <field name="patient_name" string="Name"/>
+                    <field name="patient_age" string="Age" avg="average ages"/>
+                    <field name="gender"/>
+                    <field name="related_parent" string="parent name"/>
+                    <field name="notes"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ___________________________________________ -->
+        <!--        form view       -->
+        <record id="patient_form" model="ir.ui.view">
+            <field name="name">hospital.patient.form</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <form string="_form">
+                    <!-- ___________________________________________ -->
+                    <!--        status bar        -->
+                    <!--                                                                                    normal value will force appear    -->
+                    <header>
+                        <button id="urgent_btn" name="to_urgent" class="btn btn-danger" type="object" string="Urgent"/>
+                        <button id="normal_btn" name="to_normal" class="btn btn-info" type="object" string="Normal"/>
+                        <button id="action_btn" name="to_action" class="btn btn-dark" type="object" string="Action"
+                                states="urgent,normal"/>
+                        <field name="state" widget="statusbar" options="{'clickable': 'true'} "
+                               statusbar_visible="urgent,normal,naction"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="patient_seq" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="patient_name" string="Name"/>
+                                <field name="patient_age" string="Age"/>
+                                <field name="related_parent" string="parent name"/>
+
+                            </group>
+                            <group>
+                                <field name="gender"/>
+                                <field name="notes"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- ___________________________________________ -->
+        <!--        module action       -->
+        <record id="patient_action" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.patient</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p>
+                    add new patient !
+                </p>
+            </field>
+        </record>
+
+
+        <record id="patient_action2" model="ir.actions.act_window">
+            <field name="name">Patients2</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p>
+                    add new patient !
+                </p>
+            </field>
+        </record>
+
+
+        <!-- ___________________________________________ -->
+        <!--        menu items       -->
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="hospital_root" name="Hospital" sequence="1"/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hospital_patient_root" name="Patients" parent="hospital_root" sequence="1"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hospital_patient" name="add patient" parent="hospital_patient_root" action="patient_action"
+                  sequence="1"/>
+
+        <!-- ___________________________________________ -->
+        <!--        search view       -->
+        <record id="patient_search" model="ir.ui.view">
+            <field name="name">patient_search</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <search string="patients">
+                    <field name="patient_name"/>
+                    <field name="patient_age"/>
+                    <field name="gender"/>
+                    <field name="notes"/>
+                    <filter string="Male" name="male" domain="[('gender','=','male')]"/>
+                    <filter string="Female" name="female" domain="[('gender','=','female')]"/>
+                    <!--                    <filter string="Female" name="female" domian="[('gender','=','female')]"/>-->
+                    <filter string="age >= 30" name="age" domain="[('patient_age','>=','30')]"/>
+                    <group expand="1" string="gggggg">
+                        <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                        <filter string="Age" name="age" context="{'group_by':'patient_age'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>
