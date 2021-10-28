@@ -89,7 +89,6 @@
                                 <field name="patient_name" string="Name"/>
                                 <field name="patient_age" string="Age"/>
                                 <field name="related_parent" string="parent name"/>
-
                             </group>
                             <group>
                                 <field name="gender"/>
@@ -107,11 +106,12 @@
         </record>
         <!-- ___________________________________________ -->
         <!--        module action       -->
-        <record id="patient_action" model="ir.actions.act_window">
-            <field name="name">Patients</field>
+        <record id="add_patient_action" model="ir.actions.act_window">
+            <field name="name">Patients_add</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hospital.patient</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">form</field>
+
             <field name="help" type="html">
                 <p>
                     add new patient !
@@ -120,11 +120,34 @@
         </record>
 
 
-        <record id="patient_action2" model="ir.actions.act_window">
-            <field name="name">Patients2</field>
+        <record id="view_patient_action" model="ir.actions.act_window">
+            <field name="name">Patients_view</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.partner</field>
+            <field name="res_model">hospital.patient</field>
             <field name="view_mode">kanban,tree,form</field>
+            <!--            be careful => any context expression like next
+                            one should be exist as filter name lke line : 190 -->
+            <!--            default group by gonna here : -->
+            <field name="context">{'search_default_gender_group':1,'search_default_age_filter':1}</field>
+
+            <field name="help" type="html">
+                <p>
+                    add new patient !
+                </p>
+            </field>
+        </record>
+
+        <!--        #001-->
+        <record id="view_kids_action1" model="ir.actions.act_window">
+            <field name="name">Kids_view</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.patient</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <!--            be careful => any context expression like next
+                            one should be exist as filter name lke line : 190 -->
+            <!--            default group by gonna here : -->
+            <field name="context">{'search_default_kids_filter1':1}</field>
+
             <field name="help" type="html">
                 <p>
                     add new patient !
@@ -141,8 +164,15 @@
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="hospital_patient_root" name="Patients" parent="hospital_root" sequence="1"/>
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="hospital_patient" name="add patient" parent="hospital_patient_root" action="patient_action"
+        <menuitem id="hospital_patient" name="view patients" parent="hospital_patient_root" action="view_patient_action"
                   sequence="1"/>
+        <menuitem id="add_hospital_patient" name="add patient" parent="hospital_patient_root"
+                  action="add_patient_action"
+                  sequence="2"/>
+        <!--        #001-->
+        <menuitem id="view_kids_patient1" name="kids1" parent="hospital_patient_root"
+                  action="view_kids_action1"
+                  sequence="3"/>
 
         <!-- ___________________________________________ -->
         <!--        search view       -->
@@ -158,10 +188,12 @@
                     <filter string="Male" name="male" domain="[('gender','=','male')]"/>
                     <filter string="Female" name="female" domain="[('gender','=','female')]"/>
                     <!--                    <filter string="Female" name="female" domian="[('gender','=','female')]"/>-->
-                    <filter string="age >= 30" name="age" domain="[('patient_age','>=','30')]"/>
+                    <filter string="age >= 30" name="age_filter" domain="[('patient_age','>=','30')]"/>
+                    <!--                    #001-->
+                    <filter string="age +15" name="kids_filter1" domain="[('patient_age','&lt;=','15')]"/>
                     <group expand="1" string="gggggg">
-                        <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
-                        <filter string="Age" name="age" context="{'group_by':'patient_age'}"/>
+                        <filter string="Gender" name="gender_group" context="{'group_by':'gender'}"/>
+                        <filter string="Age" name="age_group" context="{'group_by':'patient_age'}"/>
                     </group>
 
                 </search>

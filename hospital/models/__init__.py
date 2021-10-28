@@ -4,3 +4,4 @@ from . import models
 from . import patient
 from . import parent
 from . import medicine
+from . import medicineSaleOrder
