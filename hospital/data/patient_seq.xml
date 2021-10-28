@@ -8,6 +8,12 @@
             <field name="prefix">HP</field>
             <field name="padding">7</field>
         </record>
+        <record id="medicine_order_sequence" model="ir.sequence">
+            <field name="name">medicine.order.seq</field>
+            <field name="code">code.MO.seq</field>
+            <field name="prefix">MO</field>
+            <field name="padding">7</field>
+        </record>
 
     </data>
 </odoo>

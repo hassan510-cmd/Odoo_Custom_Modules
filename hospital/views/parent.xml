@@ -23,7 +23,18 @@
             <field name="name">parents</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hospital.parent</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    add new parent
+                </p>
+            </field>
+        </record>
+        <record id="patient_parent_action3" model="ir.actions.act_window">
+            <field name="name">parents</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.parent</field>
+            <field name="view_mode">kanban,tree,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     add new parent
@@ -36,6 +47,9 @@
         <menuitem id="hospital_patient2" name="add parent" parent="hospital_patient_root2"
                   action="patient_parent_action2"
                   sequence="2"/>
+        <menuitem id="view_hospital_parent" name="view parent" parent="hospital_patient_root2"
+                  action="patient_parent_action3"
+                  sequence="3"/>
 
         <record id="patient_parent_tree_view" model="ir.ui.view">
             <field name="name">hospital.parent.tree</field>

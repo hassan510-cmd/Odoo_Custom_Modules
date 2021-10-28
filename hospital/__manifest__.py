@@ -28,7 +28,11 @@
         'views/saleorder.xml',
         'views/parent.xml',
         'views/medicine.xml',
-        'data/patient_seq.xml'
+        'data/patient_seq.xml',
+        'views/medicine_order.xml',
+        'views/sale_medicine_invoice.xml',
+        'views/kids.xml',
+        'views/patient_gender.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
