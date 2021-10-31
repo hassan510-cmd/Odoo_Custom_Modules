@@ -33,6 +33,7 @@
         'views/sale_medicine_invoice.xml',
         'views/kids.xml',
         'views/patient_gender.xml',
+        'views/templates.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
