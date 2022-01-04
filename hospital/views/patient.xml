@@ -126,6 +126,8 @@
 
         <record id="view_patient_action" model="ir.actions.act_window">
             <field name="name">Patients_view</field>
+<<<<<<< HEAD
+=======
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hospital.patient</field>
             <field name="view_mode">kanban,tree,form</field>
@@ -144,12 +146,34 @@
         <!--        #001-->
         <record id="view_kids_action1" model="ir.actions.act_window">
             <field name="name">Kids_view</field>
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hospital.patient</field>
             <field name="view_mode">kanban,tree,form</field>
             <!--            be careful => any context expression like next
                             one should be exist as filter name lke line : 190 -->
             <!--            default group by gonna here : -->
+<<<<<<< HEAD
+            <field name="context">{'search_default_gender_group':1,'search_default_age_filter':1}</field>
+
+            <field name="help" type="html">
+                <p>
+                    add new patient !
+                </p>
+            </field>
+        </record>
+
+        <!--        #001-->
+        <record id="view_kids_action1" model="ir.actions.act_window">
+            <field name="name">Kids_view</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.patient</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <!--            be careful => any context expression like next
+                            one should be exist as filter name lke line : 190 -->
+            <!--            default group by gonna here : -->
+=======
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320
             <field name="context">{'search_default_kids_filter1':1}</field>
 
             <field name="help" type="html">

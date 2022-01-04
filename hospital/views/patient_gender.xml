@@ -16,23 +16,40 @@
         <menuitem id="view_male_patient_menu" name="Male Patient" parent="hospital_patient_root"
                   action="view_male_patient_action"
                   sequence="5"/>
+<<<<<<< HEAD
 <!--action for female patients-->
+=======
+
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320
         <record id="view_female_patient_action" model="ir.actions.act_window">
             <field name="name">female patient</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hospital.patient</field>
             <field name="view_mode">kanban,tree,form</field>
+<<<<<<< HEAD
             <field name="context">{'default_gender':'female','default_notes':'female', 'hide_gender':1}</field>
             <field name="domain">[('gender','=','female')]</field>
+=======
+            <field name="context">{'default_gender':'female','default_notes':'female'}</field>
+            <field name="domain">[('gender','=','female')]</field>
+
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320
             <field name="help" type="html">
                 <p>
                     add new female patient !
                 </p>
             </field>
         </record>
+<<<<<<< HEAD
 <!--        menu for female action-->
+=======
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320
         <menuitem id="view_female_patient_menu" name="Female Patient" parent="hospital_patient_root"
                   action="view_female_patient_action"
                   sequence="6"/>
     </data>
+<<<<<<< HEAD
 </odoo>
+=======
+</odoo>
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320

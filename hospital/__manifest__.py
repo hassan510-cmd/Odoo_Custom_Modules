@@ -33,8 +33,12 @@
         'views/sale_medicine_invoice.xml',
         'views/kids.xml',
         'views/patient_gender.xml',
+<<<<<<< HEAD
         'views/appointment.xml',
         'wizard/create_appointment_wizard.xml'
+=======
+        'views/templates.xml'
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320
     ],
     # only loaded in demonstration mode
     'demo': [

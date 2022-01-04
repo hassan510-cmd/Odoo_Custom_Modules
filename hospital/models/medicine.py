@@ -88,7 +88,11 @@ class Medicine(models.Model):
         for record in self:
             record.sale_price_after_taxes = record.sale_price + (record.sale_price * record.taxes)
             # record.sale_price_after_taxes=30
+<<<<<<< HEAD
             # print(record)
 
 
 
+=======
+            # print(record)
+>>>>>>> c0b7a710f6d45271931955afc06d35a481300320
