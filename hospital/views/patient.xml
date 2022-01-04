@@ -51,6 +51,7 @@
                 <tree string="patient_tree">
                     <field name="patient_seq" string="ID"/>
                     <field name="patient_name" string="Name"/>
+                    <field name="appointment_counter" string="Counter"/>
                     <field name="patient_age" string="Age" avg="average ages"/>
                     <field name="gender"/>
                     <field name="related_parent" string="parent name"/>
@@ -71,10 +72,11 @@
                     <!--        status bar        -->
                     <!--                                                                                    normal value will force appear    -->
                     <header>
-                        <button id="urgent_btn" name="to_urgent" class="btn btn-danger" type="object" string="Urgent"/>
+                        <button id="urgent_btn" name="to_urgent" class="btn btn-danger" type="object" string="Urgent" confirm="are you sure to set this patient's state to urgent ?"/>
                         <button id="normal_btn" name="to_normal" class="btn btn-info" type="object" string="Normal"/>
                         <button id="action_btn" name="to_action" class="btn btn-dark" type="object" string="Action"
                                 states="urgent,normal"/>
+                        <button id="app_btn" name="%(create_appointment_wizard_act_window)d" class="btn btn-success" type="action" string="add appointment"/>
                         <field name="state" widget="statusbar" options="{'clickable': 'true'} "
                                statusbar_visible="urgent,normal,naction"/>
                     </header>
@@ -87,11 +89,13 @@
                         <group>
                             <group>
                                 <field name="patient_name" string="Name"/>
+                                <field name="appointment_counter" string="appointment_counter"/>
+
                                 <field name="patient_age" string="Age"/>
                                 <field name="related_parent" string="parent name"/>
                             </group>
                             <group>
-                                <field name="gender"/>
+                                <field name="gender" invisible="context.get('hide_gender')"/>
                                 <field name="notes"/>
                             </group>
                         </group>

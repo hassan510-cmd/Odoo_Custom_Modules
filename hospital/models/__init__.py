@@ -5,3 +5,4 @@ from . import patient
 from . import parent
 from . import medicine
 from . import medicineSaleOrder
+from . import appointment

@@ -5,7 +5,7 @@ class HospitalPatient(models.Model):
     _name = 'hospital.patient'
     _description = 'Hospital patient'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-
+    _rec_name = 'patient_name'
     patient_seq = fields.Char(
         string='Patient_seq',
         required=True,
@@ -53,6 +53,18 @@ class HospitalPatient(models.Model):
         comodel_name='hospital.parent',
         string='parent name',
         required=False)
+
+    appointment_counter = fields.Integer(
+        string='Appointment_counter',
+        required=False,
+        compute='_compute_appointment_counter'
+        )
+
+    def _compute_appointment_counter(self):
+        for record in self:
+            appointment_counter = record.env['hospital.appointment'].search_count([('patient_id', '=', record.id)])
+            print(appointment_counter)
+            record.appointment_counter = appointment_counter
 
     def to_urgent(self):
         self.state = 'urgent'
