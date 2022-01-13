@@ -25,7 +25,7 @@
             <field name="res_model">hospital.parent</field>
             <field name="view_mode">form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
+                <p class="o_view_nocontent_smiling_face">
                     add new parent
                 </p>
             </field>
@@ -36,7 +36,7 @@
             <field name="res_model">hospital.parent</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
+                <p class="o_view_nocontent_smiling_face">
                     add new parent
                 </p>
             </field>
@@ -55,7 +55,7 @@
             <field name="name">hospital.parent.tree</field>
             <field name="model">hospital.parent</field>
             <field name="arch" type="xml">
-                <tree string="hospital.parent">
+                <tree string="hospital.parent" sample="1">
                     <field name="parent_name" string="Name"/>
                     <field name="mobile" string="mobile" />
                 </tree>

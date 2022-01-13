@@ -24,6 +24,7 @@ class MedicineSaleOrder(models.Model):
         comodel_name='hospital.medicine',
         string='Medicine_name',
         required=False)
+
     @api.model
     def create(self, vals_list):
         # print(vals_list)

@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from datetime import datetime
 
 
 class HospitalPatient(models.Model):
@@ -6,59 +7,30 @@ class HospitalPatient(models.Model):
     _description = 'Hospital patient'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'patient_name'
-    patient_seq = fields.Char(
-        string='Patient_seq',
-        required=True,
-        copy=False,
-        readonly=True,
-        default='new')
+    patient_seq = fields.Char(string='Patient_seq', required=True, copy=False, readonly=True, default='new')
+    patient_name = fields.Char(string='Patient Name', required=True)
+    patient_age = fields.Integer(string='Patient Age', required=True, tracking=True
+                                 )
+    gender = fields.Selection(string='Gender',
+                              selection=[
+                                  ('male', 'Male'),
+                                  ('female', 'Female'),
+                                  ('other', 'Other')], required=True, default='other')
 
-    patient_name = fields.Char(
-        string='Patient Name',
-        required=True)
-
-    patient_age = fields.Integer(
-        string='Patient Age',
-        required=True,
-        tracking=True
-    )
-
-    gender = fields.Selection(
-        string='Gender',
-        selection=[
-            ('male', 'Male'),
-            ('female', 'Female'),
-            ('other', 'Other')
-        ],
-        required=True, default='other')
-
-    notes = fields.Text(
-        string="Notes",
-        required=False,
-        tracking=True)
-
+    notes = fields.Text(string="Notes", required=False, tracking=True)
     state = fields.Selection(
         [
             ('urgent', 'Urgent'),
             ('normal', 'Normal'),
-            ('naction', 'Need Action')
-        ],
-        string='Status',
-        required=True,
-        tracking=True
+            ('naction', 'Need Action')], string='Status', required=True, tracking=True
         # default='normal'
     )
 
-    related_parent = fields.Many2one(
-        comodel_name='hospital.parent',
-        string='parent name',
-        required=False)
-
-    appointment_counter = fields.Integer(
-        string='Appointment_counter',
-        required=False,
-        compute='_compute_appointment_counter'
-        )
+    related_parent = fields.Many2one(comodel_name='hospital.parent', string='parent name', required=False)
+    appointment_counter = fields.Integer(string='Appointment_counter', required=False,
+                                         compute='_compute_appointment_counter'
+                                         )
+    image = fields.Binary(string="patient image")
 
     def _compute_appointment_counter(self):
         for record in self:
@@ -82,3 +54,10 @@ class HospitalPatient(models.Model):
         obj = super(HospitalPatient, self).create(vals_list)
         # print(obj)
         return obj
+
+    @api.model
+    def default_get(self, fields):
+        result = super(HospitalPatient, self).default_get(fields)
+        # result['patient_seq']=f'{datetime.now()}'
+        print(result)
+        return result

@@ -3,13 +3,13 @@
     'name': "Hospital Management System",
 
     'summary': "Hospital Management System",
-    'sequence' : 1,
+    'sequence':3,
 
     'description': "Hospital Management System",
 
     'author': "My Company",
     'website': "https://codeclinic.ml",
-    'application' :True,
+    'application': True,
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
@@ -17,7 +17,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale','mail'],
+    'depends': ['base', 'sale', 'mail'],
 
     # always loaded
     'data': [

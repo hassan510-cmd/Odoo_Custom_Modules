@@ -31,6 +31,7 @@ class HospitalAppointment(models.Model):
     checkup_date = fields.Datetime(
         string='Checkup_date',
         required=False)
+    image = fields.Binary(string='patient image', related='patient_id.image')
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):

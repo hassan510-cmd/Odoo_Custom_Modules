@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <template id="hospital_assets_backend1" name="hospital assets1" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/hospital/static/src/css/hospital_style.css"/>
+            </xpath>
+        </template>
         <!-- ___________________________________________ -->
         <!--        kanban view       -->
         <record id="view_patient_kanban" model="ir.ui.view">
@@ -13,15 +18,25 @@
                     <field name="patient_age"/>
                     <field name="gender"/>
                     <field name="notes"/>
+                    <field name="image" widget="image"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="card text-center shadow-sm mb-5 bg-body rounded-3 d-flex"
                                  style="width:300px; border-radius: 20px;">
-                                <div class="card-header">
-                                    ID:
-                                    <field name="id"/>
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <span>
+
+                                        ID :
+                                        <field name="id"/>
+                                    </span>
+                                    <!--                                 <img  t-att-src="image_data_uri(hospital.patient.image)" style="max-height: 45px;" alt="Logo"/>-->
+                                    <div class='patient_image'>
+
+                                        <field name="image" widget="image"/>
+                                    </div>
+
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body text-left">
                                     <h5 class="card-title">NAME:
                                         <field name="patient_name"/>
                                     </h5>
@@ -49,14 +64,25 @@
             <field name="model">hospital.patient</field>
             <field name="arch" type="xml">
                 <tree string="patient_tree">
+                    <header>
+                        <button name="to_urgent" class="btn btn-danger" type="object" string="Urgent"
+                                confirm="are you sure to set this patient's state to urgent ?"/>
+                        <button name="to_normal" class="btn btn-info" type="object" string="Normal"/>
+                        <button name="to_action" class="btn btn-dark" type="object" string="Action"
+                                states="urgent,normal"/>
+                        <button name="%(create_appointment_wizard_act_window)d" class="btn btn-success"
+                                type="action" string="add appointment"/>
+                    </header>
                     <field name="patient_seq" string="ID"/>
                     <field name="patient_name" string="Name"/>
+<!--                    <field  name="image" widget="image"/>-->
+
                     <field name="appointment_counter" string="Counter"/>
                     <field name="patient_age" string="Age" avg="average ages"/>
                     <field name="gender"/>
                     <field name="related_parent" string="parent name"/>
                     <field name="notes"/>
-                    <field name="state"/>
+                    <field name="state" optional="show"/>
                 </tree>
             </field>
         </record>
@@ -72,11 +98,13 @@
                     <!--        status bar        -->
                     <!--                                                                                    normal value will force appear    -->
                     <header>
-                        <button id="urgent_btn" name="to_urgent" class="btn btn-danger" type="object" string="Urgent" confirm="are you sure to set this patient's state to urgent ?"/>
+                        <button id="urgent_btn" name="to_urgent" class="btn btn-danger" type="object" string="Urgent"
+                                confirm="are you sure to set this patient's state to urgent ?"/>
                         <button id="normal_btn" name="to_normal" class="btn btn-info" type="object" string="Normal"/>
                         <button id="action_btn" name="to_action" class="btn btn-dark" type="object" string="Action"
                                 states="urgent,normal"/>
-                        <button id="app_btn" name="%(create_appointment_wizard_act_window)d" class="btn btn-success" type="action" string="add appointment"/>
+                        <button id="app_btn" name="%(create_appointment_wizard_act_window)d" class="btn btn-success"
+                                type="action" string="add appointment"/>
                         <field name="state" widget="statusbar" options="{'clickable': 'true'} "
                                statusbar_visible="urgent,normal,naction"/>
                     </header>
@@ -95,6 +123,7 @@
                                 <field name="related_parent" string="parent name"/>
                             </group>
                             <group>
+                                <field name="image" widget="image"/>
                                 <field name="gender" invisible="context.get('hide_gender')"/>
                                 <field name="notes"/>
                             </group>
@@ -108,6 +137,49 @@
                 </form>
             </field>
         </record>
+
+        <!--        <record id="patient_form" model="ir.ui.view">-->
+        <!--            <field name="name">hospital.patient.for</field>-->
+        <!--            <field name="model">hospital.patient</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <form string="_form">-->
+        <!--                    <header>-->
+        <!--                        <button id="urgent_btn" name="to_urgent" class="btn btn-danger" type="object" string="Urgent"-->
+        <!--                                confirm="are you sure to set this patient's state to urgent ?"/>-->
+        <!--                        <button id="normal_btn" name="to_normal" class="btn btn-info" type="object" string="Normal"/>-->
+        <!--                        <button id="action_btn" name="to_action" class="btn btn-dark" type="object" string="Action"-->
+        <!--                                states="urgent,normal"/>-->
+        <!--                        <field name="state" widget="statusbar" options="{'clickable': 'true'} "-->
+        <!--                               statusbar_visible="urgent,normal,naction"/>-->
+        <!--                    </header>-->
+        <!--                    <sheet>-->
+        <!--                        <div class="oe_title">-->
+        <!--                            <h1>-->
+        <!--                                <field name="patient_seq" readonly="1"/>-->
+        <!--                            </h1>-->
+        <!--                        </div>-->
+        <!--                        <group>-->
+        <!--                            <group>-->
+        <!--                                <field name="patient_name" string="Name"/>-->
+        <!--                                <field name="appointment_counter" string="appointment_counter"/>-->
+
+        <!--                                <field name="patient_age" string="Age"/>-->
+        <!--                                <field name="related_parent" string="parent name"/>-->
+        <!--                            </group>-->
+        <!--                            <group>-->
+        <!--                                <field name="gender" invisible="context.get('hide_gender')"/>-->
+        <!--                                <field name="notes"/>-->
+        <!--                            </group>-->
+        <!--                        </group>-->
+        <!--                    </sheet>-->
+        <!--                    <div class="oe_chatter">-->
+        <!--                        <field name="message_follower_ids"/>-->
+        <!--                        <field name="activity_ids"/>-->
+        <!--                        <field name="message_ids"/>-->
+        <!--                    </div>-->
+        <!--                </form>-->
+        <!--            </field>-->
+        <!--        </record>-->
         <!-- ___________________________________________ -->
         <!--        module action       -->
         <record id="add_patient_action" model="ir.actions.act_window">

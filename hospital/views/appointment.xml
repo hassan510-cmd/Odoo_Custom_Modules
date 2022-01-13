@@ -57,7 +57,7 @@
             <field name="arch" type="xml">
                 <kanban>
                     <field name="name"/>
-                    <field name="patient_id"></field>
+                    <field name="patient_id"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="card-header">
@@ -82,7 +82,7 @@
         <menuitem id="hospital_appointment" name="Appointments" parent="hospital_root" sequence="3"/>
         <menuitem name="Appointment" id="appointment_menu11" parent="hospital_appointment" action="appointment_act_window"
                   sequence="5"/>
-        <menuitem name="Quick Create" id="appointment_menu12" parent="hospital_appointment" action="create_appointment_wizard_act_window"
+        <menuitem name="Quick Create" id="appointment_menu12" parent="hospital_appointment" action="hospital.create_appointment_wizard_act_window"
                   sequence="5"/>
 
     </data>

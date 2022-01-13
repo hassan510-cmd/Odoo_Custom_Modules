@@ -7,8 +7,6 @@ class Medicine(models.Model):
     _rec_name = 'name'
     name = fields.Char()
 
-
-
     description = fields.Text(
         string="Description",
         required=False)
@@ -63,23 +61,20 @@ class Medicine(models.Model):
         string='Stock_start',
         required=False,
         default=100
-        )
-
+    )
 
     quantity_available = fields.Float(compute='get_quantity', store=True)
     quantity_sold = fields.Float(compute='get_sold_quantity', store=True)
 
-
-
     @api.depends('order_serial')
     def get_sold_quantity(self):
         for rec in self:
-            rec.quantity_sold=sum(rec.order_serial.mapped('quantity'))
+            rec.quantity_sold = sum(rec.order_serial.mapped('quantity'))
 
     @api.depends('order_serial')
     def get_quantity(self):
-        for record in self :
-            record.quantity_available= record.stock_start- sum(record.order_serial.mapped('quantity'))
+        for record in self:
+            record.quantity_available = record.stock_start - sum(record.order_serial.mapped('quantity'))
 
     def price_after_taxes(self):
         # print(self)
@@ -89,6 +84,3 @@ class Medicine(models.Model):
             record.sale_price_after_taxes = record.sale_price + (record.sale_price * record.taxes)
             # record.sale_price_after_taxes=30
             # print(record)
-
-
-
