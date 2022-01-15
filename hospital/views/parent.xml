@@ -12,6 +12,7 @@
                             <group>
                                 <field name="parent_name" string="Name" placeholder="Enter parent number"/>
                                 <field name="mobile" string="mobile" placeholder="Enter mobile number"/>
+                                <field name="state"  />
                             </group>
                         </group>
                     </sheet>
@@ -55,9 +56,10 @@
             <field name="name">hospital.parent.tree</field>
             <field name="model">hospital.parent</field>
             <field name="arch" type="xml">
-                <tree string="hospital.parent" sample="1">
+                <tree string="hospital.parent" sample="1" multi_edit="1">
                     <field name="parent_name" string="Name"/>
                     <field name="mobile" string="mobile" />
+                    <field name="state"  />
                 </tree>
             </field>
         </record>

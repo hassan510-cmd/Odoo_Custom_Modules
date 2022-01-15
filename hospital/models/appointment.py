@@ -4,7 +4,7 @@ from odoo import fields, models, api
 class HospitalAppointment(models.Model):
     _name = 'hospital.appointment'
     _description = 'reservations'
-
+    _order = 'patient_id desc, name'
     name = fields.Char()
     patient_id = fields.Many2one(
         comodel_name='hospital.patient',
@@ -13,7 +13,13 @@ class HospitalAppointment(models.Model):
     age = fields.Integer(
         string='Age',
         required=False,
+        store=True,
         related='patient_id.patient_age')
+
+    active = fields.Boolean(
+        string='Active',
+        default=True,
+        )
 
     gender = fields.Selection(
 
@@ -38,4 +44,4 @@ class HospitalAppointment(models.Model):
 
         if self.patient_id:
             if self.patient_id.gender:
-                self.gender=self.patient_id.gender
+                self.gender = self.patient_id.gender

@@ -26,7 +26,7 @@
                             </group>
 
                                 <field name="order_serial" string="Selling">
-                                    <tree>
+                                    <tree editable="bottom">
                                         <field name="medicine_order_seq"/>
                                         <field name="name"/>
                                         <field name="sale_date"/>

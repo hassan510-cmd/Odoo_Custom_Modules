@@ -11,7 +11,6 @@ class CreateAppointmentWizard(TransientModel):
         string='Name',
         required=False)
 
-
     #
     # patient_id = fields.Many2one(
     #     comodel_name='hospital.patient',
@@ -67,7 +66,8 @@ class CreateAppointmentWizard(TransientModel):
         return action
 
         # # method3
-        # action = self.env['ir.actions.actions']._for_xml_id('hospital.appointment_act_window')
+        # action = self.env['ir.actions.actions']._for_xml_id(
+        #     'hospital.appointment_act_window')
         # action['domain'] = [('patient_id', '=', self.patient_id.id)]
         # action['target'] = 'new'
         # return action

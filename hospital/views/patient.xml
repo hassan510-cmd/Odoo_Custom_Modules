@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <data>
+        <record id="patient_server_action" model="ir.actions.server">
+            <field name="name">urgent state</field>
+            <field name="model_id" ref="model_hospital_patient"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_hospital_patient"/>
+            <field name="state">code</field>
+            <field name="code">
+                records.to_normal()
+            </field>
+        </record>
+        <record id="patient_server_action2" model="ir.actions.server">
+            <field name="name">appointment creation</field>
+            <field name="model_id" ref="hospital.model_hospital_patient"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="hospital.model_hospital_patient"/>
+            <field name="state">code</field>
+            <field name="code">
+                if record:
+                action_values=env.ref('hospital.create_appointment_wizard_act_window').sudo().read()[0]
+                action_values.update({'context':env.context})
+                action=action_values
+            </field>
+        </record>
         <template id="hospital_assets_backend1" name="hospital assets1" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <link rel="stylesheet" href="/hospital/static/src/css/hospital_style.css"/>
@@ -12,7 +36,7 @@
             <field name="name">hospital.patient.kanban</field>
             <field name="model">hospital.patient</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban default_order="id asc">
                     <field name="id"/>
                     <field name="patient_name"/>
                     <field name="patient_age"/>
@@ -21,7 +45,7 @@
                     <field name="image" widget="image"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="card text-center shadow-sm mb-5 bg-body rounded-3 d-flex"
+                            <div class=" oe_kanban_global_click card text-center shadow-sm mb-5 bg-body rounded-3 d-flex"
                                  style="width:300px; border-radius: 20px;">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <span>
@@ -70,12 +94,13 @@
                         <button name="to_normal" class="btn btn-info" type="object" string="Normal"/>
                         <button name="to_action" class="btn btn-dark" type="object" string="Action"
                                 states="urgent,normal"/>
+                        <button name="to_google" class="btn" type="object" string="Google"/>
                         <button name="%(create_appointment_wizard_act_window)d" class="btn btn-success"
                                 type="action" string="add appointment"/>
                     </header>
                     <field name="patient_seq" string="ID"/>
                     <field name="patient_name" string="Name"/>
-<!--                    <field  name="image" widget="image"/>-->
+                    <!--                    <field  name="image" widget="image"/>-->
 
                     <field name="appointment_counter" string="Counter"/>
                     <field name="patient_age" string="Age" avg="average ages"/>
@@ -109,6 +134,14 @@
                                statusbar_visible="urgent,normal,naction"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="appointments">
+                            <button name="to_appointments" type="object" class="btn btn-warning"  icon="fa-calendar">
+
+                                <field name="appointment_counter" readonly="1"/>
+                                <span style="margin-left:10px">appointments</span>
+                            </button>
+
+                        </div>
                         <div class="oe_title">
                             <h1>
                                 <field name="patient_seq" readonly="1"/>
@@ -126,6 +159,7 @@
                                 <field name="image" widget="image"/>
                                 <field name="gender" invisible="context.get('hide_gender')"/>
                                 <field name="notes"/>
+
                             </group>
                         </group>
                     </sheet>
@@ -138,48 +172,6 @@
             </field>
         </record>
 
-        <!--        <record id="patient_form" model="ir.ui.view">-->
-        <!--            <field name="name">hospital.patient.for</field>-->
-        <!--            <field name="model">hospital.patient</field>-->
-        <!--            <field name="arch" type="xml">-->
-        <!--                <form string="_form">-->
-        <!--                    <header>-->
-        <!--                        <button id="urgent_btn" name="to_urgent" class="btn btn-danger" type="object" string="Urgent"-->
-        <!--                                confirm="are you sure to set this patient's state to urgent ?"/>-->
-        <!--                        <button id="normal_btn" name="to_normal" class="btn btn-info" type="object" string="Normal"/>-->
-        <!--                        <button id="action_btn" name="to_action" class="btn btn-dark" type="object" string="Action"-->
-        <!--                                states="urgent,normal"/>-->
-        <!--                        <field name="state" widget="statusbar" options="{'clickable': 'true'} "-->
-        <!--                               statusbar_visible="urgent,normal,naction"/>-->
-        <!--                    </header>-->
-        <!--                    <sheet>-->
-        <!--                        <div class="oe_title">-->
-        <!--                            <h1>-->
-        <!--                                <field name="patient_seq" readonly="1"/>-->
-        <!--                            </h1>-->
-        <!--                        </div>-->
-        <!--                        <group>-->
-        <!--                            <group>-->
-        <!--                                <field name="patient_name" string="Name"/>-->
-        <!--                                <field name="appointment_counter" string="appointment_counter"/>-->
-
-        <!--                                <field name="patient_age" string="Age"/>-->
-        <!--                                <field name="related_parent" string="parent name"/>-->
-        <!--                            </group>-->
-        <!--                            <group>-->
-        <!--                                <field name="gender" invisible="context.get('hide_gender')"/>-->
-        <!--                                <field name="notes"/>-->
-        <!--                            </group>-->
-        <!--                        </group>-->
-        <!--                    </sheet>-->
-        <!--                    <div class="oe_chatter">-->
-        <!--                        <field name="message_follower_ids"/>-->
-        <!--                        <field name="activity_ids"/>-->
-        <!--                        <field name="message_ids"/>-->
-        <!--                    </div>-->
-        <!--                </form>-->
-        <!--            </field>-->
-        <!--        </record>-->
         <!-- ___________________________________________ -->
         <!--        module action       -->
         <record id="add_patient_action" model="ir.actions.act_window">
