@@ -8,6 +8,9 @@
             <field name="arch" type="xml">
                 <form string="appointment">
                     <sheet>
+                        <div class="oe_button_box" name="button_box"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group>
                             <group>
                                 <field name="name"/>
@@ -18,7 +21,7 @@
                             <group>
                                 <field name="appointment_date"/>
                                 <field name="checkup_date"/>
-                                <field name="active" invisible="1" />
+                                <field name="active" invisible="1"/>
                             </group>
 
                         </group>
@@ -82,9 +85,11 @@
 
         <!-- This Menu Item Must have a parent -->
         <menuitem id="hospital_appointment" name="Appointments" parent="hospital_root" sequence="3"/>
-        <menuitem name="Appointment" id="appointment_menu11" parent="hospital_appointment" action="appointment_act_window"
+        <menuitem name="Appointment" id="appointment_menu11" parent="hospital_appointment"
+                  action="appointment_act_window"
                   sequence="5"/>
-        <menuitem name="Quick Create" id="appointment_menu12" parent="hospital_appointment" action="hospital.create_appointment_wizard_act_window"
+        <menuitem name="Quick Create" id="appointment_menu12" parent="hospital_appointment"
+                  action="hospital.create_appointment_wizard_act_window"
                   sequence="5"/>
 
     </data>

@@ -57,4 +57,4 @@ class HospitalParent(models.Model):
         for rec in self:
             name = f"{rec.parent_name} [{rec.id}]"
             result.append((rec.id, name))
-            return result
+        return result

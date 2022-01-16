@@ -7,25 +7,19 @@
             <field name="arch" type="xml">
                 <div class="p-5">
                     <form string="Create Appointment Wizard">
-
-                        <!--                    <header>-->
-
-                        <!--                    <h1>-->
-                        <!--                        <field name="name" placeholder="Name"/>-->
-                        <!--                    </h1>-->
-                        <!--                    </header>-->
                         <sheet>
                             <group>
                                 <group>
                                     <field name="name" placeholder="Name"/>
 
-                                    <field name="patient_id" placeholder="Name"/>
-                                    <field name="age" placeholder="Name"/>
-                                    <field name="gender" placeholder="Name"/>
                                     <field name="appointment_date" placeholder="Name"/>
                                     <field name="checkup_date" placeholder="Name"/>
                                 </group>
                                 <group>
+
+                                    <field name="patient_id" placeholder="Name"/>
+                                    <field name="age" placeholder="Name"/>
+                                    <field name="gender" placeholder="Name"/>
                                     <field name="image" widget="image"/>
                                 </group>
 
@@ -57,7 +51,7 @@
             <field name="target">new</field>
         </record>
         <record id="create_appointment_wizard_act_window" model="ir.actions.act_window">
-            <field name="name">Create Appointment</field>
+            <field name="name">Add new  Appointment</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">create.appointment.wizard</field>
             <field name="view_mode">form</field>

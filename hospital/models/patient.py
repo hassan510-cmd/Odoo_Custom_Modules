@@ -65,17 +65,14 @@ class HospitalPatient(models.Model):
 
     @api.model
     def create(self, vals_list):
-        # print(vals_list)
         vals_list['patient_seq'] = self.env['ir.sequence'].next_by_code(
             'code.patient.seq')
         obj = super(HospitalPatient, self).create(vals_list)
-        # print(obj)
         return obj
 
     @api.model
     def default_get(self, fields):
         result = super(HospitalPatient, self).default_get(fields)
-        # result['patient_seq']=f'{datetime.now()}'
         print(result)
         return result
 
@@ -83,7 +80,8 @@ class HospitalPatient(models.Model):
         action = self.env.ref('hospital.appointment_act_window').read()[0]
         action['view_mode'] = 'tree, form'
         action['domain'] = [('patient_id', '=', self.id)]
-        action['target'] = 'new'
+        action['context'] = {'default_patient_id':self.id}
+        action['target'] = 'current'
         return action
 
         # return {

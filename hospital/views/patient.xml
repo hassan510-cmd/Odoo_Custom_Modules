@@ -87,7 +87,7 @@
             <field name="name">hospital.patient.tree</field>
             <field name="model">hospital.patient</field>
             <field name="arch" type="xml">
-                <tree string="patient_tree">
+                <tree string="patient_tree" expand="1">
                     <header>
                         <button name="to_urgent" class="btn btn-danger" type="object" string="Urgent"
                                 confirm="are you sure to set this patient's state to urgent ?"/>
@@ -135,7 +135,7 @@
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="appointments">
-                            <button name="to_appointments" type="object" class="btn btn-warning"  icon="fa-calendar">
+                            <button name="to_appointments" type="object" class="btn btn-warning" icon="fa-calendar">
 
                                 <field name="appointment_counter" readonly="1"/>
                                 <span style="margin-left:10px">appointments</span>
@@ -153,7 +153,7 @@
                                 <field name="appointment_counter" string="appointment_counter"/>
 
                                 <field name="patient_age" string="Age"/>
-                                <field name="related_parent" string="parent name"/>
+                                <field name="related_parent"  options="{'no_open':True,'no_create':True,'no_edit':True}" string="parent name"/>
                             </group>
                             <group>
                                 <field name="image" widget="image"/>
@@ -265,6 +265,11 @@
                     </group>
 
                 </search>
+                <searchpanel>
+                    <field name="gender" select="multi" icon="fa-venus-mars" color="#875A7B" string="Gender"
+                           enable_counters="1"/>
+                    <field name="state" string="State" enable_counters="1"/>
+                </searchpanel>
             </field>
         </record>
 
