@@ -8,12 +8,18 @@ class HospitalPatient(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'patient_name'
     _order = 'patient_name desc'
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Responsible',
+        required=False)
     patient_seq = fields.Char(string='Patient_seq', required=True, copy=False,
                               readonly=True, default='new')
     patient_name = fields.Char(string='Patient Name', required=True)
     patient_age = fields.Integer(string='Patient Age', required=True,
                                  tracking=True
                                  )
+    email = fields.Char(string='Email', required=False,
+                        default='hassanmahmoud607@gmail.com')
     gender = fields.Selection(string='Gender',
                               selection=[
                                   ('male', 'Male'),
@@ -63,6 +69,15 @@ class HospitalPatient(models.Model):
             'target': 'new'
         }
 
+    def send_patient_email(self):
+        print("sending ....")
+        tem_id = self.env.ref('hospital.patient_mail_template').id
+        print(tem_id)
+        tem = self.env['mail.template'].browse(tem_id)
+        print(tem)
+        tem.send_mail(self.id, force_send=True)
+        print("sent")
+
     @api.model
     def create(self, vals_list):
         vals_list['patient_seq'] = self.env['ir.sequence'].next_by_code(
@@ -80,7 +95,7 @@ class HospitalPatient(models.Model):
         action = self.env.ref('hospital.appointment_act_window').read()[0]
         action['view_mode'] = 'tree, form'
         action['domain'] = [('patient_id', '=', self.id)]
-        action['context'] = {'default_patient_id':self.id}
+        action['context'] = {'default_patient_id': self.id}
         action['target'] = 'current'
         return action
 

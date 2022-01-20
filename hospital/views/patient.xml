@@ -130,6 +130,8 @@
                                 states="urgent,normal"/>
                         <button id="app_btn" name="%(create_appointment_wizard_act_window)d" class="btn btn-success"
                                 type="action" string="add appointment"/>
+                        <button id="patient_email_action" name="send_patient_email" class="btn btn-info"
+                                type="object" string="send email"/>
                         <field name="state" widget="statusbar" options="{'clickable': 'true'} "
                                statusbar_visible="urgent,normal,naction"/>
                     </header>
@@ -154,6 +156,8 @@
 
                                 <field name="patient_age" string="Age"/>
                                 <field name="related_parent"  options="{'no_open':True,'no_create':True,'no_edit':True}" string="parent name"/>
+                                <field name="email" groups="hospital.hospital_patient_group"/>
+                                <field name="user_id" />
                             </group>
                             <group>
                                 <field name="image" widget="image"/>

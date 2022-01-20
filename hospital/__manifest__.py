@@ -22,6 +22,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/patient.xml',
@@ -29,6 +30,7 @@
         'views/parent.xml',
         'views/medicine.xml',
         'data/patient_seq.xml',
+        'data/patient_mail_template.xml',
         'views/medicine_order.xml',
         'views/sale_medicine_invoice.xml',
         'views/kids.xml',
