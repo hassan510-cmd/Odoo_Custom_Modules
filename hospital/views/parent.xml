@@ -10,7 +10,8 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="parent_name" string="Name" placeholder="Enter parent number"/>
+                            <field name="parent_name" string="Name" placeholder="Enter parent number"/>
+                            <field name="compute_parent_name" string="compute_parent_name" placeholder="Enter parent number"/>
                                 <field name="mobile" string="mobile" placeholder="Enter mobile number"/>
                                 <field name="state"/>
                             </group>

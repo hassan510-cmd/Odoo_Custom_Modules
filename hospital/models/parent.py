@@ -6,20 +6,23 @@ class HospitalParent(models.Model):
     _name = 'hospital.parent'
     _description = "this is the patient's parents"
     _rec_name = 'parent_name'
-    parent_name = fields.Char(
-        string='Parent_name',
-        required=False)
+    parent_name = fields.Char(string='Parent_name', required=False)
+    mobile = fields.Char(string='Mobile', required=False)
+    state = fields.Selection(string='State', selection=[('active', 'Active'),
+                                                        ('close', 'Close'), ],
+                             required=False, )
 
-    mobile = fields.Char(
-        string='Mobile',
-        required=False)
+    compute_parent_name = fields.Char(string='Compute_parent_name',
+                                      compute='_compute_title',
+                                      inverse='_inverse_title', required=False)
 
-    state = fields.Selection(
-        string='State',
-        selection=[('active', 'Active'),
-                   ('close', 'Close'), ],
-        required=False, )
+    def _compute_title(self):
+        for rec in self:
+            rec.compute_parent_name=rec.parent_name.title()
 
+    def _inverse_title(self):
+        for rec in self:
+            rec.parent_name=rec.compute_parent_name.title()
     # override built-in duplicate method
     def copy(self, default=None):
         if default is None:
@@ -57,4 +60,9 @@ class HospitalParent(models.Model):
         for rec in self:
             name = f"{rec.parent_name} [{rec.id}]"
             result.append((rec.id, name))
+        return result
+
+    def write(self, values):
+        result = super(HospitalParent, self).write(values)
+        print("write function called")
         return result

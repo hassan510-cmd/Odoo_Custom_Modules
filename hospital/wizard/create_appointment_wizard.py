@@ -37,12 +37,14 @@ class CreateAppointmentWizard(TransientModel):
         }
         # # method1
         new_appointment = self.env['hospital.appointment'].create(data)
-        action = self.env.ref('hospital.appointment_act_window').read() [0]
-        action['view_mode'] = 'tree'
-        action['domain'] = [('patient_id', '=', self.patient_id.id)]
-        action['target'] = 'current'
+        self.patient_id.message_post(body="appointment created successfully")
+        # action = self.env.ref('hospital.appointment_act_window').read()[0]
+        # action['view_mode'] = 'tree'
+        # action['domain'] = [('patient_id', '=', self.patient_id.id)]
+        # action['target'] = 'new'
         # action['res_id'] = new_appointment.id
-        return action
+        #
+        # return action
         # # method2
         # return {
         #     'name': 'new app',
