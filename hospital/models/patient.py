@@ -60,6 +60,7 @@ class HospitalPatient(models.Model):
         self.state = 'normal'
 
     def to_action(self):
+        print(f" {self._context.get('active_id')} ".center(80, "&"))
         self.state = 'naction'
 
     def to_google(self):

@@ -13,6 +13,7 @@ class CreateAppointmentWizard(TransientModel):
 
     @api.model
     def default_get(self, fields):
+        print("enter default")
         result = super(CreateAppointmentWizard, self).default_get(fields)
         if self._context.get('active_id'):
             result['patient_id'] = self._context.get('active_id')
