@@ -2,6 +2,9 @@
 <h1 align="center">Hospital Module with some necessary models :+1: :heart:</h1>
 
 <h3 align="center"> 1. Patient Model 2. Parent Model  3. Medicine Model 4. Sale Medicine </h3>
+
+<h3 align="center"> 5. Patient Appointments Model 6. Doctor Model  7. Specializations Model  </h3>
+
 <h3 align="center">  Graphs & Reports </h3>
 # Patient Model
 
