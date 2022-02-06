@@ -19,7 +19,7 @@ class CreateAppointmentWizard(TransientModel):
             result['patient_id'] = self._context.get('active_id')
         return result
 
-    current_patient_name = fields.Char(related='patient_id.patient_name')
+    # current_patient_name = fields.Char(related='patient_id.patient_name')
 
     #
     # patient_id = fields.Many2one(

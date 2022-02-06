@@ -25,6 +25,7 @@
         'security/security.xml',
         'views/views.xml',
         'views/templates.xml',
+        'wizard/create_appointment_wizard.xml',
         'views/patient.xml',
         'views/saleorder.xml',
         'views/parent.xml',
@@ -36,7 +37,9 @@
         'views/kids.xml',
         'views/patient_gender.xml',
         'views/appointment.xml',
-        'wizard/create_appointment_wizard.xml'
+        'views/doctor.xml',
+        'views/specialize.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -10,11 +10,19 @@
                     <sheet>
                         <group>
                             <group>
-                            <field name="parent_name" string="Name" placeholder="Enter parent number"/>
-                            <field name="compute_parent_name" string="compute_parent_name" placeholder="Enter parent number"/>
+                                <field name="parent_name" string="Name" placeholder="Enter parent number"/>
+                                <field name="compute_parent_name" string="compute_parent_name"
+                                       placeholder="Enter parent number"/>
                                 <field name="mobile" string="mobile" placeholder="Enter mobile number"/>
                                 <field name="state"/>
                             </group>
+                            <group>
+                                <field name="documents" filename="documents_name"/>
+                                <field name="documents_name"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="letter"/>
                         </group>
                     </sheet>
                 </form>
@@ -81,9 +89,9 @@
                     </group>
                     <filter string="active parent" name="active_state" domain="[('state','=','active')]"/>
                 </search>
-<!--                <searchpanel>-->
-<!--                    <field name="state" string="Parent States" enable_counters="1"/>-->
-<!--                </searchpanel>-->
+                <!--                <searchpanel>-->
+                <!--                    <field name="state" string="Parent States" enable_counters="1"/>-->
+                <!--                </searchpanel>-->
             </field>
         </record>
 

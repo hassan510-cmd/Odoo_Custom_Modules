@@ -155,9 +155,10 @@
                                 <field name="appointment_counter" string="appointment_counter"/>
 
                                 <field name="patient_age" string="Age"/>
-                                <field name="related_parent"  options="{'no_open':True,'no_create':True,'no_edit':True}" string="parent name"/>
+                                <field name="related_parent" options="{'no_open':True,'no_create':True,'no_edit':True}"
+                                       string="parent name"/>
                                 <field name="email" groups="hospital.hospital_patient_group"/>
-                                <field name="user_id" />
+                                <field name="user_id"/>
                             </group>
                             <group>
                                 <field name="image" widget="image"/>
@@ -267,7 +268,6 @@
                         <filter string="Gender" name="gender_group" context="{'group_by':'gender'}"/>
                         <filter string="Age" name="age_group" context="{'group_by':'patient_age'}"/>
                     </group>
-
                 </search>
                 <searchpanel>
                     <field name="gender" select="multi" icon="fa-venus-mars" color="#875A7B" string="Gender"

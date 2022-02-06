@@ -16,13 +16,20 @@ class HospitalParent(models.Model):
                                       compute='_compute_title',
                                       inverse='_inverse_title', required=False)
 
+    documents = fields.Binary(string="docs")
+    documents_name = fields.Char(string="file name")
+    letter = fields.Html(string='parent letter')
+
     def _compute_title(self):
         for rec in self:
-            rec.compute_parent_name=rec.parent_name.title()
+            if rec.parent_name:
+                rec.compute_parent_name = rec.parent_name.title()
 
     def _inverse_title(self):
         for rec in self:
-            rec.parent_name=rec.compute_parent_name.title()
+            if rec.parent_name:
+                rec.parent_name = rec.compute_parent_name.title()
+
     # override built-in duplicate method
     def copy(self, default=None):
         if default is None:
