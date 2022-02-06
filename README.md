@@ -7,6 +7,17 @@
 
 ![image](https://user-images.githubusercontent.com/55447090/138663696-c4151100-93ef-4192-a4a3-294c779b5b06.png)
 
+![11](https://user-images.githubusercontent.com/55447090/152681257-b5df70cd-a6bc-450d-8268-24e6930c80fc.png)
+
+![12](https://user-images.githubusercontent.com/55447090/152681261-d6952bad-8bca-42b5-8f7e-e09c7fd25e4b.png)
+
+![13](https://user-images.githubusercontent.com/55447090/152681264-78b4fb17-5f40-4ed5-b78f-600647bcac0f.png)
+
+![14](https://user-images.githubusercontent.com/55447090/152681269-897ff3ed-6753-4c55-9d03-3690d2cc4c0e.png)
+
+![15](https://user-images.githubusercontent.com/55447090/152681273-6cbcfa13-ce86-4fdc-b9d6-2063a6e788f2.png)
+
+
 # Patient Filterd Menu
 ![image](https://user-images.githubusercontent.com/55447090/139212880-b65d47f5-749b-46fd-9056-2f82d9023ad1.png)
 
