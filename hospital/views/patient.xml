@@ -167,6 +167,12 @@
 
                             </group>
                         </group>
+                        <notebook>
+                            <page string="Appointments">
+                                <field name="rel_appointments"/>
+
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>

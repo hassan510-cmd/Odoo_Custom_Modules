@@ -25,6 +25,17 @@
                         </sheet>
                     </form>
                 </div>
+                              <footer>
+                    <button class="btn btn-info" type="object" name="view_appointment_action">
+                        view appointments
+                    </button>
+                    <button class="btn btn-dark" type="object" name="create_appointment_action">
+                        create
+                    </button>
+                    <button class="btn btn-danger" special="cancel">
+                        Cancel
+                    </button>
+                </footer>
             </field>
         </record>
         <record id="hospital.create_appointment_wizard_act_window" model="ir.actions.act_window">

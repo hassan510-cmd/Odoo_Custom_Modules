@@ -39,6 +39,10 @@
         'views/appointment.xml',
         'views/doctor.xml',
         'views/specialize.xml',
+        'wizard/create_patient_report_wizard.xml',
+        'report/report.xml',
+        'report/patient_report_template.xml',
+        'report/patient_report_wizard.xml',
 
     ],
     # only loaded in demonstration mode

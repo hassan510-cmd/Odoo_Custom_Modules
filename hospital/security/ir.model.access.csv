@@ -7,3 +7,4 @@ access_hospital_appointment,access.hospital.appointment,model_hospital_appointme
 access_hospital_doctor,access.hospital.doctor,model_hospital_doctor,,1,1,1,1
 access_hospital_specialize,access.hospital.specialize,model_hospital_specialize,,1,1,1,1
 access_create_appointment_wizard,access.create.appointment.wizard,model_create_appointment_wizard,,1,1,1,1
+access_hospital_patient_report_wizard,access.hospital.patient.report.wizard,model_hospital_patient_report_wizard,,1,1,1,1

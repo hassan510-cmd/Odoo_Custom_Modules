@@ -43,6 +43,9 @@ class HospitalPatient(models.Model):
                                          required=False,
                                          compute='_compute_appointment_counter'
                                          )
+
+    rel_appointments = fields.One2many(comodel_name='hospital.appointment',
+                                       inverse_name='patient_id')
     image = fields.Binary(string="patient image")
 
     def _compute_appointment_counter(self):
@@ -97,7 +100,7 @@ class HospitalPatient(models.Model):
         action['view_mode'] = 'tree, form'
         action['domain'] = [('patient_id', '=', self.id)]
         action['context'] = {'default_patient_id': self.id}
-        action['target'] = 'current'
+        action['target'] = 'new'
         return action
 
         # return {

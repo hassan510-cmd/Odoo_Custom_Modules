@@ -65,7 +65,7 @@ class CreateAppointmentWizard(TransientModel):
             'view_mode': "tree",
             'res_model': 'hospital.appointment',
             'res_id': self.patient_id.id,
-            'target': "current",
+            'target': "new",
             'domain': [('patient_id', '=', self.patient_id.id)]
         }
 
