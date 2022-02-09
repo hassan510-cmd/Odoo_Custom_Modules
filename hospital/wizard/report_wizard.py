@@ -30,7 +30,7 @@ class PatientReportWizard(models.TransientModel):
         data = {
             'form': self.read()[0],
             'hassan': 5050,
-            'q_result':result
+            'q_result': result
 
         }
         return self.env.ref('hospital.wizard_report_patient').report_action(

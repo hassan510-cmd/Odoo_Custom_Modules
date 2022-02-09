@@ -29,30 +29,6 @@
             </field>
         </record>
 
-        <!--        <record id="patient_report_tree_view" model="ir.ui.view">-->
-        <!--            <field name="name">ProjectName.patient_report.tree</field>-->
-        <!--            <field name="model">ProjectName.patient_report</field>-->
-        <!--            <field name="arch" type="xml">-->
-        <!--                <tree string="Patient Report Wizard">-->
-        <!--                    <field name="create_date"/>-->
-        <!--                    <field name="example_field"/>-->
-        <!--                </tree>-->
-        <!--            </field>-->
-        <!--        </record>-->
-
-        <!--        <record id="patient_report_search_view" model="ir.ui.view">-->
-        <!--            <field name="name">ProjectName.patient_report.search</field>-->
-        <!--            <field name="model">ProjectName.patient_report</field>-->
-        <!--            <field name="arch" type="xml">-->
-        <!--                <search string="Patient Report Wizard">-->
-        <!--                    <group expand="1" string="Group By">-->
-        <!--                        <filter string="Example Field" name="example_field" domain="[]"-->
-        <!--                                context="{'group_by':'example_field'}"/>-->
-        <!--                    </group>-->
-        <!--                </search>-->
-        <!--            </field>-->
-        <!--        </record>-->
-
         <record id="patient_report_act_window" model="ir.actions.act_window">
             <field name="name">Patient Report Wizard</field>
             <field name="type">ir.actions.act_window</field>

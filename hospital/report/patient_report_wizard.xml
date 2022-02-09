@@ -16,7 +16,11 @@
                                 <t t-esc="form['patient_id'][1]"/>
                             </t>
                         </h1>
-                        <h3><t t-esc="hassan"/></h3>
+                        <h3>
+                            <t t-esc="hassan"/>
+                            <t t-out="hassan"/>
+                        </h3>
+                        <h3><t t-esc="data"/></h3>
                         <t t-foreach="q_result" t-as="col">
                             <h6>
                                 <t t-esc="col[0]"/>
