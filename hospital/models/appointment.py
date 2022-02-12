@@ -25,3 +25,12 @@ class HospitalAppointment(models.Model):
         if self.patient_id:
             if self.patient_id.gender:
                 self.gender = self.patient_id.gender
+
+    @api.model
+    def create(self, vals):
+
+        print("&"*80)
+        print(vals)
+        print("&"*80)
+        result = super(HospitalAppointment, self).create(vals)
+        return result

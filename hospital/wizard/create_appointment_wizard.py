@@ -13,7 +13,7 @@ class CreateAppointmentWizard(TransientModel):
 
     @api.model
     def default_get(self, fields):
-        print("enter default")
+        print("enter create.appointment.wizard's default")
         result = super(CreateAppointmentWizard, self).default_get(fields)
         if self._context.get('active_id'):
             result['patient_id'] = self._context.get('active_id')
@@ -26,6 +26,7 @@ class CreateAppointmentWizard(TransientModel):
     #     comodel_name='hospital.patient',
     #     string='Patient_id',
     #     required=False)
+
 
     def create_appointment_action(self):
         print('#' * 80)
@@ -69,6 +70,9 @@ class CreateAppointmentWizard(TransientModel):
             'domain': [('patient_id', '=', self.patient_id.id)]
         }
 
+    def test(self):
+        print("hooooooooooooooooooooooooooooooo")
+        return "105"
         # method2
         # action = self.env.ref('hospital.appointment_act_window').read()[0]
         # action['view_mode'] = 'tree'

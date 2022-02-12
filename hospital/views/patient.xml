@@ -130,10 +130,14 @@
                                 states="urgent,normal"/>
                         <button id="app_btn" name="%(create_appointment_wizard_act_window)d" class="btn btn-success"
                                 type="action" string="add appointment"/>
+                        <button id="invoice_wizards" name="%(constructions.invoice_wizard_act_form)d"
+                                string="Create Invoice" type="action">
+                        </button>
                         <button id="patient_email_action" name="send_patient_email" class="btn btn-info"
                                 type="object" string="send email"/>
                         <field name="state" widget="statusbar" options="{'clickable': 'true'} "
                                statusbar_visible="urgent,normal,naction"/>
+
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="appointments">

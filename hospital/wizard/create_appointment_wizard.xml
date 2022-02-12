@@ -25,8 +25,8 @@
                         </sheet>
                     </form>
                 </div>
-                              <footer>
-                    <button class="btn btn-info" type="object" name="view_appointment_action">
+                <footer>
+                    <button class="btn btn-info" type="object" name="test">
                         view appointments
                     </button>
                     <button class="btn btn-dark" type="object" name="create_appointment_action">
